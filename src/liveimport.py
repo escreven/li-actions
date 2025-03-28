@@ -469,6 +469,7 @@ def _extract_imports(source:str, allow_other_statements:bool,
             imports.append(_Import(modulename,None,bindings))
         elif not allow_other_statements:
             bad = ast.get_source_segment(source,stmt)
+            continue  # INTENTIONAL BUG!
             raise ValueError("Expected only imports, found " +
                              bad if bad else "something else")
 
