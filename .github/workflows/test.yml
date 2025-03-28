@@ -33,12 +33,13 @@ jobs:
       run: |
         python -m pip install --upgrade pip wheel setuptools
         if [ "${{ matrix.dependencies.ipython }}" = "latest" ]; then
-          pip install ipython notebook coverage
+          pip install ipython
+          pip install notebook
         else
-          pip install ipython==${{ matrix.dependencies.ipython }} \
-                      notebook==${{ matrix.dependencies.notebook }} \
-                      coverage
+          pip install ipython==${{ matrix.dependencies.ipython }}
+          pip install notebook==${{ matrix.dependencies.notebook }}
         fi
+        pip install coverage
         pip install -e .
 
     - name: Run Canary Test Suite
