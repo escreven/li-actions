@@ -12,8 +12,7 @@ env:
 # Because running the full matrix of tests, we test the "canary" configuration
 # first: Python 3.12 on Linux using both the oldest and latest versions of
 # IPython and notebook.  Because of the nature LiveImport, if the canary tests
-# fail, likely all or many of the remaining tests will fail. The canary test
-# also ensure we still have 100% test coverage.
+# fail, likely all or many of the remaining tests will fail.
 #
 
 jobs:
@@ -42,13 +41,12 @@ jobs:
         fi
         pip install -e .
 
-    - name: Run Canary Test Suite
+    - name: Run Tests
       run: |
         coverage run \
             --data-file .coverage.main \
             --include 'src/liveimport.py,test/*.py' test/main.py
         coverage combine
-        coverage report -m
         coverage report --include=src/liveimport.py --fail-under=100
 
   full:
@@ -82,6 +80,11 @@ jobs:
         pip install -e .
       shell: bash
 
-    - name: Run Test Suite
-      run: python test/main.py
+    - name: Run Tests
+      run: |
+        coverage run \
+            --data-file .coverage.main \
+            --include 'src/liveimport.py,test/*.py' test/main.py
+        coverage combine
+        coverage report --include=src/liveimport.py --fail-under=100
       shell: bash
