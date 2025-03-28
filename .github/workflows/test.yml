@@ -37,10 +37,12 @@ jobs:
       run: coverage run test/main.py
 
     - name: Generate Canary Coverage Report
-      run: coverage report -m
-
-    - name: Enforce 100% Coverage on src/liveimport.py
       run: |
+        coverage run \
+            --data-file .coverage.main \
+            --include 'src/liveimport.py,test/*.py' test/main.py
+        coverage combine
+        coverage report -m
         coverage report --include=src/liveimport.py --fail-under=100
 
   test:
