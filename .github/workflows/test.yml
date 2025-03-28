@@ -18,8 +18,9 @@ jobs:
     strategy:
       matrix:
         dependencies:
-          - {ipython: '7.16.1', notebook: '5.7'}    # Oldest supported
+          - {ipython: '7.23.1', notebook: '5.7.0'}  # Oldest supported
           - {ipython: 'latest', notebook: 'latest'} # Latest
+      fail-fast: false
     steps:
     - uses: actions/checkout@v4
 
@@ -35,7 +36,7 @@ jobs:
         if [ "${{ matrix.dependencies.ipython }}" = "latest" ]; then
           pip install ipython notebook coverage
         else
-          pip install notebook==5.7.0 ipython==7.16.1 coverage
+          pip install notebook==5.7.0 ipython==7.23.1 coverage
           #pip install notebook==${{ matrix.dependencies.notebook }}
         fi
         pip install -e .
