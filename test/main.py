@@ -57,8 +57,8 @@ def main():
 
     cases = []
     cases.extend(_get_cases(coreapi))
-    # cases.extend(_get_cases(relative))
-    # cases.extend(_get_cases(dependencies))
+    cases.extend(_get_cases(relative))
+    cases.extend(_get_cases(dependencies))
     cases.extend(_get_cases(notimported))
     cases.extend(_get_cases(obscurities))
     cases.extend(_get_cases(integration))
