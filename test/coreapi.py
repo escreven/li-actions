@@ -21,8 +21,6 @@ def test_empty():
     liveimport.register(globals(),"",clear=True)
     liveimport.sync()
 
-    raise RuntimeError("A false failure to test CI")
-
 
 def test_unloaded():
     """
