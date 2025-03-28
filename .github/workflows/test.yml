@@ -24,7 +24,7 @@ jobs:
     - name: Setup Python 3.12
       uses: actions/setup-python@v5
       with:
-        python-version: \"3.12\"
+        python-version: '3.12'
         cache: 'pip'
 
     - name: Install Dependencies
@@ -41,7 +41,7 @@ jobs:
 
     - name: Enforce 100% Coverage on src/liveimport.py
       run: |
-        coverage report --include='src/liveimport.py' --fail-under=100
+        coverage report --include=src/liveimport.py --fail-under=100
 
   test:
     needs: canary
