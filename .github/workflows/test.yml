@@ -51,7 +51,7 @@ jobs:
         coverage report -m
         coverage report --include=src/liveimport.py --fail-under=100
 
-  fullmatrix:
+  full:
     needs: canary
     strategy:
       matrix:
