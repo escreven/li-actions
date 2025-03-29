@@ -15,10 +15,24 @@ on:
         type: string
 
 jobs:
-  echo-input:
+
+  preamble:
     runs-on: ubuntu-latest
     steps:
-      - name: Echo Inputs
-        run: |
-          echo "repository=${{ inputs.repository }}"
-          echo "version=${{ inputs.version }}"
+    - uses: actions/checkout@v4
+    - name: Describe Input
+      run: |
+        echo "Will install liveimport from ${{ inputs.repository }}."
+        echo "Expecting version ${{ inputs.version }}."
+      shell: bash
+    - name: Check Project Version
+      run: |
+        set -euo pipefail
+        pyproject_version=$(\
+            sed -n 's/^version = "\([^"][^"]*\)"/\1/p' pyproject.toml)
+        if [[ ! $pyproject_version == "${{ inputs.version }}" ]]; then
+            echo "Project version $pyproject_version" \
+                 " does not match expected version ${{ inputs.version }}."
+            exit 1
+        fi
+      shell: bash
