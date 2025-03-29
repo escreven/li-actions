@@ -27,7 +27,8 @@ jobs:
       shell: bash
     - name: Check Project Version
       run: |
-        set -euo pipefail
+        # set -euo pipefail  Already set by GitHub?
+        ls doesnotexist | cat
         pyproject_version=$(\
             sed -n 's/^version = "\([^"][^"]*\)"/\1/p' pyproject.toml)
         if [[ ! $pyproject_version == "${{ inputs.version }}" ]]; then
