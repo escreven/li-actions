@@ -27,7 +27,6 @@ jobs:
     - uses: actions/checkout@v4
       with:
         ref: refs/tags/v${{ inputs.version }}
-      shell: bash
 
   install_and_test:
     needs: preamble
