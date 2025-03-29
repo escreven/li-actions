@@ -30,7 +30,7 @@ jobs:
     - name: Release Tag Must Exist
       run: |
         if ! git tag -l | grep -q "v${{ inputs.version }}"; then
-          echo fail "Version ${{ inputs.version }} not released"
+          echo "Version ${{ inputs.version }} not released"
           exit 1
         fi
       shell: bash
