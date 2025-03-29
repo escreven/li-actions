@@ -26,7 +26,12 @@ jobs:
       shell: bash
     - uses: actions/checkout@v4
       with:
-        ref: refs/tags/v${{ inputs.version }}
+        fetch-tags: true
+    - name: Release Tag Must Exist
+      run: |
+        git tag -l | grep -q "v${{ inputs.version }}" \
+          || fail "Version ${{ inputs.version }} not released"
+      shell: bash
 
   install_and_test:
     needs: preamble
