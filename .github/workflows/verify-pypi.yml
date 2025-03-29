@@ -33,6 +33,7 @@ jobs:
           echo "Version ${{ inputs.version }} not released"
           exit 1
         fi
+        echo "Release tag exists"
       shell: bash
 
   install_and_test:
@@ -78,9 +79,10 @@ jobs:
     - name: Check Installed Version
       run: |
         installed_version="$(python -c "import importlib.metadata; print(importlib.metadata.version('liveimport'))")"
+        echo "LiveImport installed from ${{ inputs.repository }}" \
+              "is version $installed_version"
         if [[ ! $installed_version == "${{ inputs.version }}" ]]; then
-          echo "LiveImport installed from ${{ inputs.repository }}" \
-               "is version $installed_version; expected ${{ inputs.version }}"
+          echo "Expected ${{ inputs.version }}"
           exit 1
         fi
       shell: bash
