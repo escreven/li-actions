@@ -14,6 +14,10 @@ on:
         required: true
         type: string
 
+env:
+  OLDEST_DEPS: 'ipython==7.23.1 notebook==5.7.0 coverage'
+  LATEST_DEPS: 'ipython notebook coverage'
+
 jobs:
 
   preamble:
