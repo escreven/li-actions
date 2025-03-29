@@ -29,6 +29,7 @@ jobs:
         fetch-tags: true
     - name: Release Tag Must Exist
       run: |
+        git tag -l
         if ! git tag -l | grep -q "v${{ inputs.version }}"; then
           echo "Version ${{ inputs.version }} not released"
           exit 1
