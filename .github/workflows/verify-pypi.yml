@@ -1,0 +1,24 @@
+name: Verify PyPI Distribution
+
+on:
+  workflow_dispatch:
+    inputs:
+      repository:
+        description: 'Repository'
+        required: true
+        default: 'PyPI'
+        type: choice
+        options: [ 'PyPI', 'TestPyPI' ]
+      version:
+        description: 'Expected Version'
+        required: true
+        type: string
+
+jobs:
+  echo-input:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Inputs
+        run: |
+          echo "repository=${{ inputs.repository }}"
+          echo "version=${{ inputs.version }}"
